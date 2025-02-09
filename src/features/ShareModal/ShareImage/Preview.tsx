@@ -38,6 +38,9 @@ const Preview = memo<FieldType & { title?: string }>(
     const displayTitle = isInbox ? t('inbox.title') : title;
     const displayDesc = isInbox ? t('inbox.desc') : description;
 
+    // Check for APP_URL environment variable
+    const homepageURL = process.env.APP_URL || pkg.homepage;
+    
     return (
       <div className={containerStyles.preview}>
         <div className={withBackground ? styles.background : undefined} id={'preview'}>
@@ -66,7 +69,7 @@ const Preview = memo<FieldType & { title?: string }>(
             {withFooter ? (
               <Flexbox align={'center'} className={styles.footer} gap={4}>
                 <ProductLogo type={'combine'} />
-                <div className={styles.url}>{pkg.homepage}</div>
+                <div className={styles.url}>{homepageURL}</div>
               </Flexbox>
             ) : (
               <div />
