@@ -33,7 +33,6 @@ import {
 } from '../utils/streams';
 import { parseDataUri } from '../utils/uriParser';
 
-const modelsOffSafetySettings = new Set(['gemini-2.0-flash-exp']);
 
 const modelsWithModalities = new Set([
   'gemini-2.0-flash-exp',
@@ -64,10 +63,7 @@ enum HarmBlockThreshold {
 }
 
 function getThreshold(model: string): HarmBlockThreshold {
-  if (modelsOffSafetySettings.has(model)) {
-    return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
-  }
-  return HarmBlockThreshold.BLOCK_NONE;
+  return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
 }
 
 const DEFAULT_BASE_URL = 'https://generativelanguage.googleapis.com';
